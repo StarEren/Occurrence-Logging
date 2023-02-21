@@ -10,7 +10,7 @@
 + Calling in time and date of each occurance. 
 + Create a file and record results in real time with all information.
 
-The result would be a system that can log any machine cycle time.
+The result would be a system that can log any machine cycle time with multiple parts.
 
 ### Requirements:
 + [Python 3.9 to 3.11.1](https://www.python.org/downloads/release/python-3111/) is required.
