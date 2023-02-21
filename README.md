@@ -18,11 +18,9 @@ The result would be a system that can log any machine cycle time with multiple p
 ### Local Development:
 ```
 # Clone the repo
-$ git clone https://github.com/Kenttrann2302/Object-Detection/
+$ git clone https://github.com/StarEren/Occurrence-Logging
 # Move into directories
 $ cd <directory-name>
-# Install the requirements to run the program
-$ pip install <packages-name>
 # Start the program and have fun!!!
 $ python main.py
 ```
