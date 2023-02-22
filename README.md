@@ -1,7 +1,7 @@
 ```diff
 - Shubham, a controls engineer so bright,
 - Guiding co-op students with all his might,
-- Engineering a future, shining with light.
+- Object detection, his current delight.
 ```
 # Winter Workterm - Time Elaspe Log Project (2023)
 
