@@ -12,6 +12,20 @@
 
 The result would be a system that can log any machine cycle time with multiple parts.
 
+### How to implement script:
++ Import both classes:
+
+  from imageRenamingClasses import BinaryNameAssigner
+  from imageTimingClasses import imageTiming
+
++ Use the calling below:
+
+  bna = BinaryNameAssigner(ARRAY_VARIABLE)
+  assigned_names = bna.assign()
+  print(assigned_names)
+  timing = imageTiming(responses, assigned_names) 
+  timing.record()
+  
 ### Requirements:
 + [Python 3.9 to 3.11.1](https://www.python.org/downloads/release/python-3111/) is required.
 
