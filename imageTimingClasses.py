@@ -37,7 +37,13 @@ class imageTiming:
             return results
 
 
-    
+
+
+
+
+
+
+
 #random pass or fail inputs for test    
 #responses = [1, 1, 0]
 # Create an instance of the class

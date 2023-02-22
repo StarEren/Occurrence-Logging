@@ -1,0 +1,8 @@
+Part: 1, DateTime: 2023-02-22 11:00:39.866518, Response: pass, Time Elapsed: 0 seconds
+Part: 0, DateTime: 2023-02-22 11:00:41.267133, Response: fail, Time Elapsed: 1.400615 seconds
+Part: 1, DateTime: 2023-02-22 11:00:45.644509, Response: fail, Time Elapsed: 4.377376 seconds
+Part: 0, DateTime: 2023-02-22 11:00:50.523979, Response: fail, Time Elapsed: 4.87947 seconds
+Part: 1, DateTime: 2023-02-22 11:00:59.379950, Response: pass, Time Elapsed: 0 seconds
+Part: 0, DateTime: 2023-02-22 11:01:02.439925, Response: fail, Time Elapsed: 3.059975 seconds
+Part: 1, DateTime: 2023-02-22 11:01:07.243908, Response: fail, Time Elapsed: 4.803983 seconds
+Part: 0, DateTime: 2023-02-22 11:01:11.454085, Response: fail, Time Elapsed: 4.210177 seconds
