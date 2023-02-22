@@ -5,7 +5,7 @@ import time
 class imageTiming:
     def __init__(self, responses, assigned_names):
         self.responses = responses
-        self.prev_timestamp = None
+        self.prev_timestamp = datetime.datetime.now()
         self.assigned_names = assigned_names
     
     def record(self):

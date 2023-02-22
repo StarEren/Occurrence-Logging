@@ -11,6 +11,5 @@ assigned_names = bna.assign()
 
 print(assigned_names)
 
-# record the time elapsed for each name
-it = imageTiming(assigned_names, responses)
-results = it.record()
+timing = imageTiming(responses, assigned_names) 
+timing.record() 
