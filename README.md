@@ -20,7 +20,7 @@ The result would be a system that can log any machine cycle time with multiple p
 
 + Use the calling below:
 
-  + bna = BinaryNameAssigner(***INPUT_ARRAY_VARIABLE***)
+  + bna = BinaryNameAssigner(__INPUT_ARRAY_VARIABLE__)
   + assigned_names = bna.assign()
   + print(assigned_names)
   + timing = imageTiming(responses, assigned_names) 
