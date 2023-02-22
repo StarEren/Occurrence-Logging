@@ -6,8 +6,8 @@
 
 ### My process:
 + Calling in the array and to ask the user to name each occurrence in an array of pass or fail.
-+ Calculating the time elasped between each fail or pass to attain cycle time in seconds.
-+ Calling in time and date of each occurance. 
++ Calling in time and date of each occurance
++ Calculating the time elasped between each fail or pass to attain cycle time in seconds. 
 + Create a file and record results in real time with all information.
 
 The result would be a system that can log any machine cycle time with multiple parts.
