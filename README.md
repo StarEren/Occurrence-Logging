@@ -1,7 +1,7 @@
 ```diff
-- TO BE CHECKED BY SHUBHAM
-+ TO BE CHECKED BY SHUBHAM
-! TO BE CHECKED BY SHUBHAM
+- Shubham, a controls engineer so bright,
+- Guiding co-op students with all his might,
+- Engineering a future, shining with light.
 ```
 # Winter Workterm - Time Elaspe Log Project (2023)
 
