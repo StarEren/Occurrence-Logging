@@ -35,6 +35,4 @@ The result would be a system that can log any machine cycle time with multiple p
 $ git clone https://github.com/StarEren/Occurrence-Logging
 # Move into directories
 $ cd <directory-name>
-# Start the program and have fun!!!
-$ python main.py
 ``
