@@ -1,8 +1,3 @@
-```diff
-- Shubham, a controls engineer so bright,
-- Guiding co-op students with all his might,
-- Object detection, his current fight.
-```
 # Winter Workterm - Time Elaspe Log Project (2023)
 
 ## Contributor = Eren Yilmaz
