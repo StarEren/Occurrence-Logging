@@ -23,4 +23,4 @@ $ git clone https://github.com/StarEren/Occurrence-Logging
 $ cd <directory-name>
 # Start the program and have fun!!!
 $ python main.py
-```
+``

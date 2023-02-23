@@ -13,8 +13,3 @@ class BinaryNameAssigner:
             assigned_names.append(name)  
         # return the list of assigned names    
         return assigned_names
-
-#array = [0, 1, 0, 1, 1, 0]
-#bna = BinaryNameAssigner(array)  # create a BinaryNameAssigner object with the array
-#assigned_names = bna.assign()  # call the assign method to assign names to each occurrence
-#print(assigned_names)  # print the list of assigned names

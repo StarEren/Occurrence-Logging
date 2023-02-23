@@ -16,7 +16,6 @@ class imageTiming:
                 
                 #random waittime for test
                 wait = random.uniform(1, 5)
-                print(f"Wait time for image {i+1}: {wait}")
                 time.sleep(wait)
                 
                 curr_timestamp = datetime.datetime.now()
@@ -35,17 +34,3 @@ class imageTiming:
                     f.write(f"Part: {self.assigned_names[i]}, DateTime: {curr_timestamp}, Response: {result['response']}, Time Elapsed: {result['time_elapsed']} seconds\n")
 
             return results
-
-
-
-
-
-
-
-
-
-#random pass or fail inputs for test    
-#responses = [1, 1, 0]
-# Create an instance of the class
-#timing = imageTiming(responses)
-#results = timing.record()
