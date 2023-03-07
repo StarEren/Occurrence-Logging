@@ -1,4 +1,0 @@
-Part: 1, DateTime: 2023-02-23 09:16:44.019148, Response: pass, Time Elapsed: 2.915539 seconds
-Part: 2, DateTime: 2023-02-23 09:16:46.027499, Response: fail, Time Elapsed: 2.008351 seconds
-Part: 3, DateTime: 2023-02-23 09:16:48.164336, Response: pass, Time Elapsed: 2.136837 seconds
-Part: 4, DateTime: 2023-02-23 09:16:52.634969, Response: fail, Time Elapsed: 4.470633 seconds
