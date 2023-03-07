@@ -3,6 +3,7 @@ import random
 import time
 import os
 import psycopg2
+import pytz
 
 class imageTiming:
     def __init__(self, assigned_names, db_config):
@@ -11,8 +12,8 @@ class imageTiming:
         self.assigned_names = assigned_names
         self.current_array = None
         self.current_index = None
-        self.last_updated = [datetime.datetime.now() for _ in assigned_names]
-    
+        self.last_updated = [datetime.datetime.now(pytz.utc) for _ in assigned_names]
+        
     def record(self, new_array):
         if self.current_array is None:
             self.current_array = new_array
@@ -29,11 +30,11 @@ class imageTiming:
         conn = psycopg2.connect(conn_string)
         cur = conn.cursor()
         
+        curr_timestamp = datetime.datetime.now(datetime.timezone.utc)
         new_results = []
 
         for i, val in enumerate(new_array):
             if self.current_array[i] != val:
-                curr_timestamp = datetime.datetime.now()
                 time_elapsed = (curr_timestamp - self.last_updated[i]).total_seconds()
                 
                 result = {"assigned_name": self.assigned_names[i], "response": val, "time_elapsed": time_elapsed}
@@ -57,7 +58,7 @@ class imageTiming:
         for result in new_results:
             cur.execute(
                 "INSERT INTO results (assigned_name, timestamp, response, time_elapsed, shift) VALUES (%s, %s, %s, %s, %s)",
-                (result["assigned_name"], datetime.datetime.now(), result["response"], result["time_elapsed"], shift)
+                (result["assigned_name"], curr_timestamp, result["response"], result["time_elapsed"], shift)
             )
         
 
@@ -68,4 +69,3 @@ class imageTiming:
         conn.close()
         
         return new_results
-
