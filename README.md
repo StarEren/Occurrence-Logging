@@ -2,13 +2,13 @@
 
 ## Contributor = Eren Yilmaz
 
-## This is a work term project to gather an input of true or false, assign a name and record each occurrence in a database.
+## This is a work term project to gather an input of true or false, assign a name and record the change each occurrence between arrays in a database.
 
 ### My process:
 + Calling in the array and to ask the user to name each occurrence in an array of pass or fail.
 + Calling in time and date of each occurance
 + Calculating the time elasped between each fail or pass to attain cycle time in seconds. 
-+ Create a file and record results in real time with all information.
++ Recording to grepostsql database.
 
 The result would be a system that can log any machine cycle time with multiple parts.
 
