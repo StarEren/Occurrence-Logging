@@ -1,4 +1,6 @@
 import psycopg2
+import random
+import time
 from imageRenamingClasses import BinaryNameAssigner
 from imageTimingClasses import imageTiming
 from imageAverageClasses import imageAverage
@@ -11,22 +13,35 @@ db_config = {
     "port_id": 5432
 }
 
-# example array
-Array = [0, 1, 0, 0]
+# define the initial array
+arr = [random.randint(0, 1) for i in range(4)]
+
 
 # pass array into class
-bna = BinaryNameAssigner(initalArray)
+bna = BinaryNameAssigner(arr)
 
 # ask user to name each occurance in array
 assigned_names = bna.assign()
 print(assigned_names)
 
-timing = imageTiming(initalArray, assigned_names, db_config)
+timing = imageTiming(assigned_names, db_config)
 
-# Feed in arrays of responses
-timing.record(Array)
+# loop until all elements are 1
+while 0 in arr:
+    # wait for a random amount of time between 1 and 4 seconds
+    wait_time = random.uniform(1, 4)
+    time.sleep(wait_time)
+
+    # generate a new array
+    arr = [random.randint(0, 1) for i in range(4)]
+    
+    # Feed in arrays of responses
+    timing.record(arr)
+    
+    # print the new array
+    print(arr)
+    
+
 
 calculation = imageAverage(db_config)
 calculation.average
-
-
