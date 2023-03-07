@@ -12,13 +12,7 @@ db_config = {
 }
 
 # example array
-initalArray = [0, 0, 0, 0]
-
-# new array
-newArray = [1, 1, 1, 0]
-
-# new array2
-newArray2 = [1, 1, 1, 1]
+Array = [0, 1, 0, 0]
 
 # pass array into class
 bna = BinaryNameAssigner(initalArray)
@@ -30,7 +24,7 @@ print(assigned_names)
 timing = imageTiming(initalArray, assigned_names, db_config)
 
 # Feed in arrays of responses
-timing.record(newArray)
+timing.record(Array)
 
 calculation = imageAverage(db_config)
 calculation.average

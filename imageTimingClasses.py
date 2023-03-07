@@ -4,21 +4,17 @@ import time
 import os
 import psycopg2
 
-
 class imageTiming:
-    def __init__(self, initial_array, assigned_names, db_config):
+    def __init__(self, assigned_names, db_config):
         self.prev_timestamp = datetime.datetime.now()
         self.db_config = db_config
         self.assigned_names = assigned_names
-        self.current_array = initial_array
+        self.current_array = None
         self.current_index = 0
-        self.results = []
     
     def record(self, new_array):
-        if all(val == 1 for val in self.current_array):
+        if self.current_array is None:
             self.current_array = new_array
-            self.current_index = 0
-            self.results = []
         
         conn_string = "host={0} port={1} dbname={2} user={3} password={4}".format(
             self.db_config["hostname"],
@@ -34,8 +30,7 @@ class imageTiming:
         new_results = []
 
         for i, val in enumerate(new_array):
-            wait = random.uniform(1, 5)
-            time.sleep(wait)
+
             if self.current_array[i] != val:
                 curr_timestamp = datetime.datetime.now()
                 if self.prev_timestamp is not None:
@@ -62,8 +57,6 @@ class imageTiming:
                 new_results.append(result)
                 
                 self.prev_timestamp = curr_timestamp
-        
-        self.results.extend(new_results)
         
         # Determine the shift based on the current time
         curr_hour = datetime.datetime.now().hour
