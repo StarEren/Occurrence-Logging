@@ -15,7 +15,10 @@ db_config = {
 initalArray = [0, 0, 0, 0]
 
 # new array
-newArray = [1, 1, 0, 1]
+newArray = [1, 1, 1, 0]
+
+# new array2
+newArray2 = [1, 1, 1, 1]
 
 # pass array into class
 bna = BinaryNameAssigner(initalArray)

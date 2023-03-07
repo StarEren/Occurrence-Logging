@@ -32,7 +32,10 @@ class imageTiming:
         cur = conn.cursor()
         
         new_results = []
+
         for i, val in enumerate(new_array):
+            wait = random.uniform(1, 5)
+            time.sleep(wait)
             if self.current_array[i] != val:
                 curr_timestamp = datetime.datetime.now()
                 if self.prev_timestamp is not None:
