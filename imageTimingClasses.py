@@ -35,7 +35,7 @@ class imageTiming:
 
         for i, val in enumerate(new_array):
             if self.current_array[i] != val:
-                time_elapsed = (curr_timestamp - self.last_updated[i]).total_seconds()
+                time_elapsed = round((curr_timestamp - self.last_updated[i]).total_seconds(), 2)
                 
                 result = {"assigned_name": self.assigned_names[i], "response": val, "time_elapsed": time_elapsed}
                 new_results.append(result)

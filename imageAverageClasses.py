@@ -38,6 +38,8 @@ class imageAverage:
                 # Calculate the average of the last 5 time_elapsed values
                 if last_five_times:
                     average_time = sum(last_five_times) / len(last_five_times)
+                    # Round the average to two decimal places
+                    average_time = round(average_time, 2)
                     
                 # Add the average time to the appropriate list based on the shift
                 if shift == "Day":
@@ -55,6 +57,5 @@ class imageAverage:
         print("Day Shift:", avg_times_day)
         print("Afternoon Shift:", avg_times_afternoon)
         print("Night Shift:", avg_times_night)
-
-
-
+        
+        return (avg_times_day, avg_times_afternoon, avg_times_night)
