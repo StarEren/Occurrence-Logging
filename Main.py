@@ -32,7 +32,6 @@ while 0 in arr:
     # generate a new array
     arr = [random.randint(0, 1) for i in range(4)]
     
-    
     # Feed in arrays of responses
     response = timing.record(arr)
     

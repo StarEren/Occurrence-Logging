@@ -18,7 +18,10 @@ class imageTiming:
         if self.current_array is None:
             self.current_array = new_array
             self.current_index = 0
-        
+
+        # Check if the current array is all 1s
+        all_ones = all(val == 1 for val in self.current_array)
+
         conn_string = "host={0} port={1} dbname={2} user={3} password={4}".format(
             self.db_config["hostname"],
             self.db_config["port_id"],
@@ -35,16 +38,29 @@ class imageTiming:
 
         for i, val in enumerate(new_array):
             if self.current_array[i] != val:
-                time_elapsed = round((curr_timestamp - self.last_updated[i]).total_seconds(), 2)
-                
-                result = {"assigned_name": self.assigned_names[i], "response": val, "time_elapsed": time_elapsed}
-                new_results.append(result)
-                
-                self.last_updated[i] = curr_timestamp
-                self.current_array[i] = val
-                
-                self.current_index = i
-            
+                # Only record changes from 0 to 1 if the current array is all 1s
+                if self.current_array[i] == 0 and all_ones:
+                    self.current_array[i] = val
+                    self.current_index = i
+                    self.last_updated[i] = curr_timestamp
+                    new_results.append({
+                        "assigned_name": self.assigned_names[i], 
+                        "response": val, 
+                        "time_elapsed": round((curr_timestamp - self.last_updated[i]).total_seconds(), 2)
+                    })
+                # Ignore changes from 1 to 0
+                elif self.current_array[i] == 1 and val == 0:
+                    continue
+                else:
+                    self.current_array[i] = val
+                    self.current_index = i
+                    self.last_updated[i] = curr_timestamp
+                    new_results.append({
+                        "assigned_name": self.assigned_names[i], 
+                        "response": val, 
+                        "time_elapsed": round((curr_timestamp - self.last_updated[i]).total_seconds(), 2)
+                    })
+                    
         # Determine the shift based on the current time
         curr_hour = datetime.datetime.now().hour
         if 7 <= curr_hour < 15:
