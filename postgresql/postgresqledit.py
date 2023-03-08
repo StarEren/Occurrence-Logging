@@ -7,10 +7,10 @@ pwd = 'W1nter@2023Hydro'
 port_id = 5432
 
 conn = psycopg2.connect(
-    host = hostname,
-    dbname = database,
-    user = username,
-    password = pwd,
+    host=hostname,
+    dbname=database,
+    user=username,
+    password=pwd,
     port=port_id)
 
 # Set up cursor
@@ -25,6 +25,9 @@ query = f"DELETE FROM {table_name};"
 # Execute the DELETE query
 cur.execute(query)
 
+# Reset the primary key ID
+cur.execute(f"SELECT setval(pg_get_serial_sequence('{table_name}', 'id'), 1, false);")
+
 # Commit the transaction
 conn.commit()
 
@@ -32,4 +35,4 @@ conn.commit()
 cur.close()
 conn.close()
 
-print(f"All data entries have been deleted from {table_name}")
+print(f"All data entries have been deleted from {table_name} and primary key ID has been reset.")

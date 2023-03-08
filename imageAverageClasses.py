@@ -4,9 +4,8 @@ from psycopg2 import extras
 class imageAverage:
     def __init__(self, db_config):
         self.db_config = db_config
-    
-    def average(self, responses):
-        self.responses = responses
+        
+    def average(self):
         conn_string = "host={0} port={1} dbname={2} user={3} password={4}".format(
             self.db_config["hostname"],
             self.db_config["port_id"],
@@ -18,48 +17,44 @@ class imageAverage:
         conn = psycopg2.connect(conn_string)
         cur = conn.cursor()
 
-        while True:
+        # Get all distinct assigned_names in the results table
+        cur.execute("SELECT DISTINCT assigned_name, shift FROM results WHERE response = '1'")
+        results = cur.fetchall()
 
-            cursor = conn.cursor(cursor_factory=extras.DictCursor)
+        shifts = ["Day", "Afternoon", "Night"]
 
-            # Get all distinct assigned_names in the results table
-            cursor.execute("SELECT DISTINCT assigned_name, shift FROM results WHERE response = 'pass'")
-            results = cursor.fetchall()
+        # Create empty lists to store the average times for each shift
+        avg_times_day = []
+        avg_times_afternoon = []
+        avg_times_night = []
 
-            shifts = ["Day", "Afternoon", "Night"]
+        # For each assigned_name, calculate the average of the last 5 time_elapsed values for each shift
+        for assigned_name in set(result[0] for result in results):
+            for shift in shifts:
+                # Query the last 5 time_elapsed values for the current assigned_name and shift
+                cur.execute(f"SELECT time_elapsed FROM results WHERE assigned_name = '{assigned_name}' AND shift = '{shift}' AND response = '1' ORDER BY timestamp DESC LIMIT 5")
+                last_five_times = [result[0] for result in cur.fetchall()]
 
-            # Create empty lists to store the average times for each shift
-            avg_times_day = []
-            avg_times_afternoon = []
-            avg_times_night = []
-
-            # For each assigned_name, calculate the average of the last 5 time_elapsed values for each shift
-            for assigned_name in set(result['assigned_name'] for result in results):
-                for shift in shifts:
-                    # Query the last 5 time_elapsed values for the current assigned_name and shift
-                    cursor.execute(f"SELECT time_elapsed FROM results WHERE assigned_name = '{assigned_name}' AND shift = '{shift}' AND response = 'pass' ORDER BY timestamp DESC LIMIT 5")
-                    last_five_times = [result[0] for result in cursor.fetchall()]
-
-                    # Calculate the average of the last 5 time_elapsed values
-                    if last_five_times:
-                        average_time = sum(last_five_times) / len(last_five_times)
-                    else:
-                        average_time = 0
-
-                    # Add the average time to the appropriate list based on the shift
-                    if shift == "Day":
-                        avg_times_day.append(average_time)
-                    elif shift == "Afternoon":
-                        avg_times_afternoon.append(average_time)
-                    elif shift == "Night":
-                        avg_times_night.append(average_time)
+                # Calculate the average of the last 5 time_elapsed values
+                if last_five_times:
+                    average_time = sum(last_five_times) / len(last_five_times)
                     
-                    # Close the database cursor and connection    
-                    cur.close    
-                    conn.close()
+                # Add the average time to the appropriate list based on the shift
+                if shift == "Day":
+                    avg_times_day.append(average_time)
+                elif shift == "Afternoon":
+                    avg_times_afternoon.append(average_time)
+                elif shift == "Night":
+                    avg_times_night.append(average_time)
+            
+        # Close the database cursor and connection    
+        cur.close()    
+        conn.close()
 
-                    # Print the lists of average times for each shift
-                    print("Day Shift:", avg_times_day)
-                    print("Afternoon Shift:", avg_times_afternoon)
-                    print("Night Shift:", avg_times_night)
-                
+        # Print the lists of average times for each shift
+        print("Day Shift:", avg_times_day)
+        print("Afternoon Shift:", avg_times_afternoon)
+        print("Night Shift:", avg_times_night)
+
+
+
