@@ -14,6 +14,7 @@ class imageTiming:
         self.current_index = None
         self.last_updated = [datetime.datetime.now(pytz.utc) for _ in assigned_names]
         self.states = [0] * len(assigned_names)
+        self.last_non_zero_array = None
         
     def record(self, new_array):
         if self.current_array is None:
@@ -47,6 +48,10 @@ class imageTiming:
             
         if all(state == 1 for state in self.states):
             self.states = [0] * len(self.assigned_names)
+            if all(val == 1 for val in new_array):
+                self.last_non_zero_array = None
+        else:
+            self.last_non_zero_array = self.current_array
                 
         # Determine the shift based on the current time
         curr_hour = datetime.datetime.now().hour
@@ -63,7 +68,6 @@ class imageTiming:
                 "INSERT INTO results (assigned_name, timestamp, response, time_elapsed, shift) VALUES (%s, %s, %s, %s, %s)",
                 (result["assigned_name"], curr_timestamp, result["response"], result["time_elapsed"], shift)
             )
-        
 
         conn.commit()
         

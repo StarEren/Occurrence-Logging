@@ -43,4 +43,4 @@ while 0 in arr:
     print(arr)
     
 calculation = imageAverage(db_config)
-calculation.average()
+calculation.average(arr)

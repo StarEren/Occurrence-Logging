@@ -55,6 +55,14 @@ class imageAverage:
         cur.close()    
         conn.close()
 
+        # Check if a shift has no values and replace the list with an empty list
+        if not avg_times_day:
+            avg_times_day = []
+        if not avg_times_afternoon:
+            avg_times_afternoon = []
+        if not avg_times_night:
+            avg_times_night = []
+
         # Print the lists of average times for each shift
         print("Day Shift:", avg_times_day)
         print("Afternoon Shift:", avg_times_afternoon)
